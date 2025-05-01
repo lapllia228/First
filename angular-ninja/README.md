@@ -1,59 +1,87 @@
-# AngularNinja
+# Image-to-Text OCR Uploader (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## Overview
 
-## Development server
+Image-to-Text OCR Uploader is a  Angular web application that allows users to upload an image (JPEG/PNG) and extract text from it using the API Ninjas OCR API.
 
-To start a local development server, run:
+This project demonstrates how to validate files, preview images, and integrate external APIs in a clean and responsive UI.
+
+---
+
+## Features
+
+- Upload images via file input
+- Validation for file type and size (JPEG/PNG, max 2MB)
+- Image preview using FileReader
+- OCR API integration for text recognition
+- Copy recognized text to clipboard
+- Clear and user-friendly error handling
+
+---
+
+## Technologies Used
+
+- Angular 17+ with standalone components
+- TypeScript
+- RxJS
+- HTML/CSS
+- API Ninjas OCR API
+- Clipboard API
+
+---
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
+git clone https://github.com/lapllia228/First.git
+cd First
+Install dependencies:
+
+
+npm install
+Run the development server:
+
+
 ng serve
-```
+Visit http://localhost:4200 in your browser.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Usage
+Click the file input and select an image (JPG/PNG, ≤2MB)
 
-## Code scaffolding
+Image preview will appear
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Text will be extracted via OCR API and shown below
 
-```bash
-ng generate component component-name
-```
+Click the Copy button to copy the text to clipboard
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Sample API Response
+[
+  {
+    "text": "Angular is a platform for building web applications..."
+  }
+]
 
-```bash
-ng generate --help
-```
+## Development Notes
 
-## Building
+While working on this project, I encountered and resolved several issues that helped deepen my understanding of Angular and Git workflows:
 
-To build the project run:
+1. Submodule Conflicts
+   At some point, I accidentally turned a folder into a Git submodule. This caused problems with pushing and syncing the repository. To fix it, I had to remove the inner `.git` folder, clean up Git submodule references, and re-add the folder as a regular directory.
 
-```bash
-ng build
-```
+2. Standalone HTTP Client Configuration in Angular  
+   Since I used Angular standalone components, I had to configure HTTP services using `provideHttpClient()` instead of the deprecated `HttpClientModule`. I initially forgot this, which resulted in `NullInjectorError` when injecting `HttpClient`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. Context Loss in FileReader Callback
+   While processing image uploads, I ran into an issue where `this` became undefined inside a `FileReader.onload` function. Switching to an arrow function fixed the context and gave me access to component properties.
 
-## Running unit tests
+4. Incorrect baseHref for GitHub Pages
+   I had to manually set the `baseHref` in `angular.json` to match the repository name (e.g., `/First/`) in order for routing to work correctly on GitHub Pages.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+5. Deployment Issues with angular-cli-ghpages 
+   Deployment initially failed due to incorrect output folder and missing remote repo config. After correcting the `--dir` parameter and verifying the Git remote, I was able to publish the build to GitHub Pages successfully.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+These challenges were frustrating, but they ultimately helped me understand how to better structure Angular projects and manage Git integration.

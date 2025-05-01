@@ -1,0 +1,14 @@
+<input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg" />
+<div *ngIf="error" style="color:red">{{ error }}</div>
+
+<img *ngIf="preview" [src]="preview" width="200" />
+
+<div *ngIf="error" style="color:red">{{ error }}</div>
+
+<div *ngIf="textResult">
+  <h3>Розпізнаний текст:</h3>
+  <pre>{{ textResult }}</pre>
+  <button (click)="copyToClipboard()">Скопіювати</button>
+</div>
+
+

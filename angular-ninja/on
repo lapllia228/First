@@ -1,0 +1,13 @@
+[1mdiff --git a/angular.json b/angular.json[m
+[1mindex ff57a21..6d239ef 100644[m
+[1m--- a/angular.json[m
+[1m+++ b/angular.json[m
+[36m@@ -13,6 +13,8 @@[m
+         "build": {[m
+           "builder": "@angular-devkit/build-angular:application",[m
+           "options": {[m
+[32m+[m[32m            "baseHref": "/firstTask/",[m
+[32m+[m
+             "outputPath": "dist/angular-ninja",[m
+             "index": "src/index.html",[m
+             "browser": "src/main.ts",[m
